@@ -1,0 +1,2 @@
+# checkersAI
+checkers AI project
