@@ -182,7 +182,7 @@ class Board:
                             moves.update({(row_up - 1, col_left - 1): [self.board[row_up][col_left]]})
                             # update skipped list
                             next_skip = skipped + [self.board[row_up][col_left]]
-                            moves.update(self.get_jump_moves_king((row_up - 1), (col_left - 1), p_colour, skipped=next_skip))
+                            moves.update(self.get_jump_moves_red((row_up - 1), (col_left - 1), p_colour, skipped=next_skip))
             # up right
             if col_right < COLS:
                 if self.board[row_up][col_right] != 0 and self.board[row_up][col_right] not in skipped and (self.board[row_up][col_right]).colour != p_colour:
@@ -190,15 +190,7 @@ class Board:
                         if self.board[row_up - 1][col_right + 1] == 0:
                             moves.update({(row_up - 1, col_right + 1): [self.board[row_up][col_right]]})
                             next_skip = skipped + [self.board[row_up][col_right]]
-                            moves.update(self.get_jump_moves_king((row_up - 1), (col_right + 1), p_colour, skipped=next_skip))
-            # up right
-            if col_right < COLS:
-                if self.board[row_up][col_right] != 0 and self.board[row_up][col_right] not in skipped and (self.board[row_up][col_right]).colour != p_colour:
-                    if (row_up - 1) >= 0 and (col_right + 1) < COLS:
-                        if self.board[row_up - 1][col_right + 1] == 0:
-                            moves.update({(row_up - 1, col_right + 1): [self.board[row_up][col_right]]})
-                            next_skip = skipped + [self.board[row_up][col_right]]
-                            moves.update(self.get_jump_moves_king((row_up - 1), (col_right + 1), p_colour, skipped=next_skip))
+                            moves.update(self.get_jump_moves_red((row_up - 1), (col_right + 1), p_colour, skipped=next_skip))
         return moves
 
     def get_jump_moves_birch(self, row, col, p_colour, skipped=[]):
@@ -214,7 +206,7 @@ class Board:
                         if self.board[row_down + 1][col_left - 1] == 0:
                             moves.update({(row_down + 1, col_left - 1): [self.board[row_down][col_left]]})
                             next_skip = skipped + [self.board[row_down][col_left]]
-                            moves.update(self.get_jump_moves_king((row_down + 1), (col_left - 1), p_colour, skipped=next_skip))
+                            moves.update(self.get_jump_moves_birch((row_down + 1), (col_left - 1), p_colour, skipped=next_skip))
             # down right
             if col_right < COLS:
                 if self.board[row_down][col_right] != 0 and self.board[row_down][col_right] not in skipped and col_right < COLS and (self.board[row_down][col_right]).colour != p_colour:
@@ -222,7 +214,7 @@ class Board:
                         if self.board[row_down + 1][col_right + 1] == 0:
                             moves.update({(row_down + 1, col_right + 1): [self.board[row_down][col_right]]})
                             next_skip = skipped + [self.board[row_down][col_right]]
-                            moves.update(self.get_jump_moves_king((row_down + 1), (col_right + 1), p_colour, skipped=next_skip))
+                            moves.update(self.get_jump_moves_birch((row_down + 1), (col_right + 1), p_colour, skipped=next_skip))
 
         return moves
     def get_jump_moves_king(self, row, col, p_colour, skipped=[]):

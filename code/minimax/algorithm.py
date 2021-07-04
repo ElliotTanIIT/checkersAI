@@ -39,8 +39,9 @@ def get_all_moves(board, colour, game):
         # move is a tuple (x, y), skip is the list of skipped pieces
         for move, skip in valid_moves.items():
             temp_board = deepcopy(board)
+            temp_piece = temp_board.get_piece(piece.row, piece.col)
             # simulate the move and return the resulting potential board
-            new_board = simulate_move(piece, move, temp_board, game, skip)
+            new_board = simulate_move(temp_piece, move, temp_board, game, skip)
             # save the potential board into all_moves
             all_moves.append(new_board)
     return all_moves
