@@ -79,9 +79,6 @@ class Board:
 
     def get_valid_moves(self, piece):
         moves = {} # append to moves dict with (key, val) as ((pos x, pos y), [skipped pieces])
-        left = piece.col - 1
-        right = piece.col + 1
-        row = piece.row
         # should check king first, then colour
 
         # check piece type
@@ -178,18 +175,18 @@ class Board:
                     # if it is, this is a valid move
                     if (row_up - 1) >= 0 and (col_left - 1) >= 0:
                         if self.board[row_up - 1][col_left - 1] == 0:
-                            # update moves
-                            moves.update({(row_up - 1, col_left - 1): [self.board[row_up][col_left]]})
                             # update skipped list
                             next_skip = skipped + [self.board[row_up][col_left]]
+                            # update moves
+                            moves.update({(row_up - 1, col_left - 1): next_skip})
                             moves.update(self.get_jump_moves_red((row_up - 1), (col_left - 1), p_colour, skipped=next_skip))
             # up right
             if col_right < COLS:
                 if self.board[row_up][col_right] != 0 and self.board[row_up][col_right] not in skipped and (self.board[row_up][col_right]).colour != p_colour:
                     if (row_up - 1) >= 0 and (col_right + 1) < COLS:
                         if self.board[row_up - 1][col_right + 1] == 0:
-                            moves.update({(row_up - 1, col_right + 1): [self.board[row_up][col_right]]})
                             next_skip = skipped + [self.board[row_up][col_right]]
+                            moves.update({(row_up - 1, col_right + 1): next_skip})
                             moves.update(self.get_jump_moves_red((row_up - 1), (col_right + 1), p_colour, skipped=next_skip))
         return moves
 
@@ -204,19 +201,19 @@ class Board:
                 if self.board[row_down][col_left] != 0 and self.board[row_down][col_left] not in skipped and col_left >= 0 and (self.board[row_down][col_left]).colour != p_colour:
                     if (row_down + 1) < ROWS and (col_left - 1) >= 0:
                         if self.board[row_down + 1][col_left - 1] == 0:
-                            moves.update({(row_down + 1, col_left - 1): [self.board[row_down][col_left]]})
                             next_skip = skipped + [self.board[row_down][col_left]]
+                            moves.update({(row_down + 1, col_left - 1): next_skip})
                             moves.update(self.get_jump_moves_birch((row_down + 1), (col_left - 1), p_colour, skipped=next_skip))
             # down right
             if col_right < COLS:
                 if self.board[row_down][col_right] != 0 and self.board[row_down][col_right] not in skipped and col_right < COLS and (self.board[row_down][col_right]).colour != p_colour:
                     if (row_down + 1) < ROWS and (col_right + 1) < COLS: 
                         if self.board[row_down + 1][col_right + 1] == 0:
-                            moves.update({(row_down + 1, col_right + 1): [self.board[row_down][col_right]]})
                             next_skip = skipped + [self.board[row_down][col_right]]
+                            moves.update({(row_down + 1, col_right + 1): next_skip})
                             moves.update(self.get_jump_moves_birch((row_down + 1), (col_right + 1), p_colour, skipped=next_skip))
-
         return moves
+    
     def get_jump_moves_king(self, row, col, p_colour, skipped=[]):
         moves = {}
         row_up = row - 1
@@ -232,18 +229,18 @@ class Board:
                     # if it is, this is a valid move
                     if (row_up - 1) >= 0 and (col_left - 1) >= 0:
                         if self.board[row_up - 1][col_left - 1] == 0:
-                            # update moves
-                            moves.update({(row_up - 1, col_left - 1): [self.board[row_up][col_left]]})
                             # update skipped list
                             next_skip = skipped + [self.board[row_up][col_left]]
+                            # update moves
+                            moves.update({(row_up - 1, col_left - 1): next_skip})
                             moves.update(self.get_jump_moves_king((row_up - 1), (col_left - 1), p_colour, skipped=next_skip))
             # up right
             if col_right < COLS:
                 if self.board[row_up][col_right] != 0 and self.board[row_up][col_right] not in skipped and (self.board[row_up][col_right]).colour != p_colour:
                     if (row_up - 1) >= 0 and (col_right + 1) < COLS:
                         if self.board[row_up - 1][col_right + 1] == 0:
-                            moves.update({(row_up - 1, col_right + 1): [self.board[row_up][col_right]]})
                             next_skip = skipped + [self.board[row_up][col_right]]
+                            moves.update({(row_up - 1, col_right + 1): next_skip})
                             moves.update(self.get_jump_moves_king((row_up - 1), (col_right + 1), p_colour, skipped=next_skip))
         if row_down < ROWS: 
             # down left
@@ -251,16 +248,16 @@ class Board:
                 if self.board[row_down][col_left] != 0 and self.board[row_down][col_left] not in skipped and col_left >= 0 and (self.board[row_down][col_left]).colour != p_colour:
                     if (row_down + 1) < ROWS and (col_left - 1) >= 0:
                         if self.board[row_down + 1][col_left - 1] == 0:
-                            moves.update({(row_down + 1, col_left - 1): [self.board[row_down][col_left]]})
                             next_skip = skipped + [self.board[row_down][col_left]]
+                            moves.update({(row_down + 1, col_left - 1): next_skip})
                             moves.update(self.get_jump_moves_king((row_down + 1), (col_left - 1), p_colour, skipped=next_skip))
             # down right
             if col_right < COLS:
                 if self.board[row_down][col_right] != 0 and self.board[row_down][col_right] not in skipped and col_right < COLS and (self.board[row_down][col_right]).colour != p_colour:
                     if (row_down + 1) < ROWS and (col_right + 1) < COLS: 
                         if self.board[row_down + 1][col_right + 1] == 0:
-                            moves.update({(row_down + 1, col_right + 1): [self.board[row_down][col_right]]})
                             next_skip = skipped + [self.board[row_down][col_right]]
+                            moves.update({(row_down + 1, col_right + 1): next_skip})
                             moves.update(self.get_jump_moves_king((row_down + 1), (col_right + 1), p_colour, skipped=next_skip))
 
         return moves
