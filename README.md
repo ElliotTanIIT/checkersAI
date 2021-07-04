@@ -1,5 +1,5 @@
 # CheckersAI
-This is a checkers game with AI built off of a tutorial by Tech With Tim, I encourage people to check out his channel: https://www.youtube.com/channel/UC4JX40jDee_tINbkjycV4Sg
+This is a checkers game with AI built off of a tutorial by 'Tech With Tim' out of my personal interest, and I encourage people to check out his channel: https://www.youtube.com/channel/UC4JX40jDee_tINbkjycV4Sg
 
 ## The Game
 
