@@ -11,4 +11,4 @@ In this checkers game, there were a couple of bugs in the algorithm, namely:
 Bugs have been fixed
 
 # AI
-implement AI 
+The AI uses a minimax algorithm and is optimized using alpha beta pruning
