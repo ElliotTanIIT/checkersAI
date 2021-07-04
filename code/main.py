@@ -3,8 +3,12 @@ import pygame
 from checkers.constants import *
 from checkers.board import *
 from checkers.game import *
-FPS = 60
+from minimax.algorithm import *
 
+FPS = 60
+ai_colour = BIRCH
+player_colour = RED
+max_player = BIRCH
 #window
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Checkers')
@@ -22,7 +26,9 @@ def main():
 
     while run:
         clock.tick(FPS)
-        
+        if game.turn == ai_colour:
+            value, new_board = minimax(game.get_board(), 3, max_player, ai_colour, player_colour, game)
+            game.ai_move(new_board)
         if game.winner() != None:
             print(game.winner())
 
