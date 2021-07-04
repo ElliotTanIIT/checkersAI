@@ -32,8 +32,5 @@ class Piece:
         self.col = col
         self.calc_pos()
 
-    def make_king(self):
-        self.king = True
-
     def __repr__(self):
         return str(self.colour)

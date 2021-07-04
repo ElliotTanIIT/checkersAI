@@ -50,11 +50,13 @@ class Board:
         # check if move makes piece a king
         # pieces have to move in order for this to take effect, pieces starting at the ends won't have issues automatically becoming kings
         if row == ROWS - 1 or row == 0:
-            piece.make_king()
-            if piece.colour == BIRCH:
-                self.birch_kings += 1
-            else:
-                self.red_kings += 1
+            # if its already a king, don't do anything
+            if not piece.king:
+                piece.make_king()
+                if piece.colour == BIRCH:
+                    self.birch_kings += 1
+                else:
+                    self.red_kings += 1
 
     def get_piece(self, row, col):
         return self.board[row][col]

@@ -1,4 +1,5 @@
-- cannot multi jump into king from red side
+- cannot multi jump into king from red side (fixed)
 
-- kings cannot eat in both directions in same turn
+- kings cannot eat in both directions in same turn (fixed)
 
+- king counter keeps increasing when a king piece returns to an upper or lower edge (fixed)
