@@ -11,4 +11,4 @@ In this checkers game, there were a couple of bugs in his original algorithm, na
 Bugs have been fixed
 
 # AI
-The original project also implements the minimax algorithm, and I have added on to it by optimizing the AI using alpha beta pruning
+The original project implements the minimax algorithm to support AI decisions, and I have added on to it by optimizing the AI using alpha beta pruning
