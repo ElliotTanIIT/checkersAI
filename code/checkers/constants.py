@@ -17,3 +17,5 @@ CROWN = pygame.transform.scale(pygame.image.load("checkers/assets/crown.png"), (
 
 NEG_INF = float('-inf')
 POS_INF = float('inf')
+
+MINIMAX_DEPTH = 4
